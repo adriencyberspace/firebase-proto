@@ -139,3 +139,23 @@ a {
 .dashboard div {
   margin-top: 7px;
 }
+
+.header,
+.footer {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.header {
+  border-bottom: 1px solid black;
+}
+
+.footer {
+  border-top: 1px solid black;
+}
+
+.button {
+  margin-top: 10px;
+}

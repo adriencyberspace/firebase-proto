@@ -15,7 +15,7 @@ const Login: NextPage = () => {
       // maybe trigger a loading screen
       return;
     }
-    if (user) router.push("/dashboard");
+    if (user) router.push("/");
   }, [user, loading]);
   return (
     <div className="login">

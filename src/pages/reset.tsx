@@ -11,7 +11,7 @@ function Reset() {
 
   useEffect(() => {
     if (loading) return;
-    if (user) router.push("/dashboard");
+    if (user) router.push("/");
   }, [user, loading]);
   return (
     <div className="reset">

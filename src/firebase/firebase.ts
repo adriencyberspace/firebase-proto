@@ -6,6 +6,7 @@ import {
   collection,
   where,
   addDoc,
+  connectFirestoreEmulator,
 } from "firebase/firestore";
 import {
   // GoogleAuthProvider,
@@ -15,7 +16,9 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  connectAuthEmulator,
 } from "firebase/auth";
+import { useRouter } from "next/router";
 
 const app = initializeApp({
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -28,8 +31,10 @@ const app = initializeApp({
 });
 
 const db = getFirestore();
+connectFirestoreEmulator(db, "localhost", 8080);
 
 const auth = getAuth(app);
+connectAuthEmulator(auth, "http://localhost:9099");
 
 // const googleProvider = new GoogleAuthProvider();
 // const signInWithGoogle = async () => {

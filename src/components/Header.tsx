@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { auth, db, logout } from "../firebase/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
-function Dashboard() {
+export default function Header() {
   const router = useRouter();
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
@@ -20,23 +20,33 @@ function Dashboard() {
       alert("An error occured while fetching user data");
     }
   };
+
   useEffect((): any => {
     if (loading) return;
-    if (!user) return router.push("/dashboard");
+    if (!user) return router.push("/login");
     fetchUserName();
   }, [user, loading]);
 
+  const handleLogout = () => {
+    router.push("/login");
+    logout();
+  };
   return (
-    <div className="dashboard">
-      <div className="dashboard__container">
-        Logged in as
-        <div>{name}</div>
-        <div>{user?.email}</div>
-        <button className="dashboard__btn" onClick={logout}>
-          Logout
-        </button>
-      </div>
+    <div className="header">
+      {user ? (
+        <div>
+          Hello {name}, {user?.email}
+          <div>
+            <button className="button" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <a href="/login">Log in to your account</a>
+        </div>
+      )}
     </div>
   );
 }
-export default Dashboard;
